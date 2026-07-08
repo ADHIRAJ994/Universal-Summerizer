@@ -13,6 +13,9 @@ env/
 # Results
 results/
 
+# Tests
+tests/
+
 # Secrets
 .env
 .env.local
@@ -45,4 +48,3 @@ Thumbs.db
 !docker-compose.yml
 !.gitignore
 !src/
-!tests/
