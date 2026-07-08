@@ -1,6 +1,5 @@
 import validators
 import re
-from typing import str as String
 from enum import Enum
 
 
