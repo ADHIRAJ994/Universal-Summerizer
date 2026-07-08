@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+
+  streamlit-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: universal-summarizer
+    ports:
+      - "8501:8501"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    volumes:
+      - ./results:/app/results
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "curl",
+          "-f",
+          "http://localhost:8501/_stcore/health"
+        ]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+      start_period: 30s
+
+  fastapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: summarizer-api
+    ports:
+      - "8000:8000"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    command: >
+      uvicorn api:app
+      --host 0.0.0.0
+      --port 8000
+      --reload
+    restart: unless-stopped
