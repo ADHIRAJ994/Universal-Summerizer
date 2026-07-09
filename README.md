@@ -586,8 +586,6 @@ Adhiraj Chakravorty
 - newspaper3k for excellent article extraction
 - YouTube Transcript API for caption extraction
 - The FastAPI team for the excellent framework
-- The React team for the UI library
-- Tailwind CSS for the utility-first styling approach
 
 ---
 
